@@ -65,12 +65,14 @@ $ npm i
 2. 注册完成后在控制台中依次点击 <strong>第三方登录</strong> -> <strong>OIDC 应用</strong>后，可以看到OIDC 应用列表，点击应用名即可看到该应用信息。
 </p>
 
-   <img src="https://cdn.authing.cn/blog/20200221200735.png" height='400px' style="margin: auto;display: block;">
+![](https://cdn.authing.cn/blog/20200221220348.png)
+   <img src="" height='400px' style="margin: auto;display: block;">
 
 <p>
 3. 在应用信息中可以看到 <strong>AppID</strong>、<strong>Secret</strong>和<strong>认证地址</strong>。
 </p>
-      <img src="https://cdn.authing.cn/blog/20200221200745.png" height='400px' style="margin: auto;display: block;">
+
+![](https://cdn.authing.cn/blog/20200221220448.png)
 
 ### 修改配置
 
@@ -118,9 +120,15 @@ $ sls
 http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/authing/oidc/redirect
 ```
 
+![](https://cdn.authing.cn/blog/20200221220546.png)
+
 ## 3. 测试
 
-部署成功后你可访问返回链接中的 `/login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息。
+部署成功后你可访问返回链接中的 `/login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息，如：
+
+ ```
+http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login
+```
 
 [点击查看本项目演示](http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login)。
 
