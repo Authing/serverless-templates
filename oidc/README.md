@@ -46,7 +46,7 @@ $ serverless create --template-url https://github.com/Authing/serverless-templat
 |- packae.json
 ```
 
-在`codes` 文件目录执行 NPM 依赖的安装，如下命令所示：
+在 `codes` 文件目录执行 NPM 依赖的安装，如下命令所示：
 
 ```console
 $ cd codes
@@ -57,7 +57,7 @@ $ npm i
 
 ### 修改配置
 
-新建 `.env` 文件：
+进入 `codes` 目录，新建 `.env` 文件：
 
 ```shell
 $ touch .env
