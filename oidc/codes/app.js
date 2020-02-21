@@ -48,7 +48,7 @@ app.get("/authing/oidc/redirect", async (req, res) => {
         console.log(err);
       }
     
-      res.send(400, {
+      res.send(200, {
         token,
         userInfo
       });
@@ -59,6 +59,16 @@ app.get("/authing/oidc/redirect", async (req, res) => {
     }
   }
   return;
+});
+
+app.get("/userinfo", async (req, res) => {
+  try {
+    let userInfo = await serverless.getUserInfoByAccessToken(req.query.access_token);
+    res.send(200, userInfo)
+  } catch (err) {
+    console.log(err);
+    res.send(400, err);
+  }
 });
 
 app.get("/login", async (req, res) => {
