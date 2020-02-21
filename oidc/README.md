@@ -4,7 +4,7 @@
 
 [Authing](https://authing.cn) 提供适用于 Web、iOS 和 Android 的跨平台无服务器认证和授权平台，兼容 OAuth2.0、OIDC、AD/LDAP、SAML 等各类协议，平台现有数千名开发者用户，分布在美国、欧洲、加拿大、澳大利亚、日本、中国香港、中国台湾等国家和地区，每月处理数十万次身份认证。
 
-OIDC 协议是 Authing 推荐的最佳身份认证实践。
+**(OIDC 协议)[(https://docs.authing.cn/authing/advanced/oidc/understand-oidc)]是 Authing 推荐的最佳身份认证实践。**
 
 本项目用于使用 [Authing OIDC 流程](https://docs.authing.cn/authing/advanced/oidc/oidc-authorization)进行身份认证时后端接口的快速部署，这些接口包含了「使用 Code 换取  access_token」、「使用 access_token 换取 userInfo」以及进入登录页面 URL 拼接功能。
 
