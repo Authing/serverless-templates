@@ -156,22 +156,9 @@ $ sls
 
 &nbsp;
 
-> 注:
+## 注
 
-1. 首次部署成功后，也可以通过以下命令，在本地运行服务，并与后端腾讯云服务进行通讯：
-
-```console
-$ cd dashboard && npm run start
-```
-
-2. 目前暂不支持淘宝等第三方 npm 源，如报错`Component "@serverless/tencent-express" was not found on NPM nor could it be resolved locally.`请设置并使用 npm 官方源体验：
-
-```console
-$ npm config rm registry
-$ npm set registry https://registry.npmjs.org/
-```
-
-3. 腾讯云 Component 已支持二维码一键登录，如您希望使用配置秘钥的方式登录，也可以参考如下步骤：
+腾讯云 Component 已支持二维码一键登录，如您希望使用配置秘钥的方式登录，也可以参考如下步骤：
    在`tencent-fullstack-react-application` 文件夹根目录创建 `.env` 文件
 
 ```console
