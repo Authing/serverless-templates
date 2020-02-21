@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@serverless/tencent-express": "^2.3.0",
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^3.13.1",
+    "@authing/serverless-oidc": "^0.1.2",
+    "express": "^4.17.1"
   }
 }

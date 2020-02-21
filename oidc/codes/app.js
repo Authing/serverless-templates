@@ -1,7 +1,7 @@
   
 const express = require("express");
 const app = express();
-const serverlessOIDC = require("./node_modules/@authing/serverless-oidc");
+const serverlessOIDC = require("@authing/serverless-oidc");
 const yaml = require('js-yaml');
 const fs   = require('fs');
 
