@@ -13,8 +13,4 @@ express:
       oidc:
         clientId: 5e4ebe25fa9218f059844174
         clientSecret: 73d07daf9e76c377cc351b928d208ddf
-        responseType: code
         domain: serverless-oidc.authing.cn
-        scope: "unionid email phone offline_access openid"
-        prompt: login
-        grantType: authorization_code

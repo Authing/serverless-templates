@@ -16,6 +16,11 @@ try {
 const authingOIDC = inputs.authing.oidc;
 const serverless = new serverlessOIDC();
 
+authingOIDC.prompt = authingOIDC.prompt || 'login';
+authingOIDC.scope = authingOIDC.scope || 'unionid email phone offline_access openid';
+authingOIDC.grantType = authingOIDC.grantType || 'authorization_code';
+authingOIDC.responseType = authingOIDC.responseType || 'code';
+
 const serverlessConstructorParams = {
   client_id: authingOIDC.clientId,
   domain: authingOIDC.domain,

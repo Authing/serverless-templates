@@ -75,12 +75,10 @@ express:
       oidc:
         clientId: YOUR_OIDC_CLIENTID
         clientSecret: YOUR_OIDC_CLIENR_SECRET
-        responseType: code
         domain: YOUR_OIDC_DOMAIN.authing.cn
-        scope: "unionid email phone offline_access openid"
-        prompt: login
-        grantType: authorization_code
 ```
+
+获取
 
 回到`oidc`目录下，直接通过 `sls` 命令来部署应用:
 
