@@ -2,31 +2,26 @@
 const express = require("express");
 const app = express();
 const serverlessOIDC = require("@authing/serverless-oidc");
-const yaml = require('js-yaml');
-const fs   = require('fs');
+const path = require('path');
+const env = require('dotenv').config({
+  path: path.resolve(process.cwd(), '../.env')
+})
 
-let inputs = null;
-try {
-  inputs = yaml.safeLoad(fs.readFileSync('../serverless.yml', 'utf8'));
-  inputs = inputs.express.inputs;
-} catch (e) {
-  console.log(e);
-}
+const authingOIDC = env.parsed;
 
-const authingOIDC = inputs.authing.oidc;
 const serverless = new serverlessOIDC();
 
-authingOIDC.prompt = authingOIDC.prompt || 'login';
-authingOIDC.scope = authingOIDC.scope || 'unionid email phone offline_access openid';
-authingOIDC.grantType = authingOIDC.grantType || 'authorization_code';
-authingOIDC.responseType = authingOIDC.responseType || 'code';
+authingOIDC.PROMPT = authingOIDC.PROMPT || 'login';
+authingOIDC.SCOPE = authingOIDC.SCOPE || 'unionid email phone offline_access openid';
+authingOIDC.GRANT_TYPE = authingOIDC.GRANT_TYPE || 'authorization_code';
+authingOIDC.RESPONSE_TYPE = authingOIDC.RESPONSE_TYPE || 'code';
 
 const serverlessConstructorParams = {
-  client_id: authingOIDC.clientId,
-  domain: authingOIDC.domain,
-  scope: authingOIDC.scope,
-  response_type: authingOIDC.responseType,
-  prompt: authingOIDC.prompt
+  client_id: authingOIDC.CLIENT_ID,
+  domain: authingOIDC.DOMAIN,
+  scope: authingOIDC.SCOPE,
+  response_type: authingOIDC.RESPONSE_TYPE,
+  prompt: authingOIDC.PROMPT
 }
 
 app.use(express.json());
@@ -41,8 +36,8 @@ app.get("/authing/oidc/redirect", async (req, res) => {
     try {
       let token = await serverless.getTokenByCode({
         code: query["code"],
-        client_secret: authingOIDC.clientSecret,
-        grant_type: authingOIDC.grantType,
+        client_secret: authingOIDC.CLIENT_SECRET,
+        grant_type: authingOIDC.GRANT_TYPE,
         redirect_uri: redirect_uri
       });
 

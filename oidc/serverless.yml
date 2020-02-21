@@ -1,15 +1,9 @@
 # serverless.yml
 
 express:
-  component: "@serverless/tencent-express"
+  component: ./node_modules/@serverless/tencent-express
   inputs:
     region: ap-shanghai
-    serviceId: service-oidc
     code: ./codes
     include:
         - ./serverless.yml
-    authing:
-      oidc:
-        clientId: 5e4ebe25fa9218f059844174
-        clientSecret: 73d07daf9e76c377cc351b928d208ddf
-        domain: serverless-oidc.authing.cn
