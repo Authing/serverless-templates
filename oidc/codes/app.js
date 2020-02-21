@@ -3,9 +3,7 @@ const express = require("express");
 const app = express();
 const serverlessOIDC = require("@authing/serverless-oidc");
 const path = require('path');
-const env = require('dotenv').config({
-  path: path.resolve(process.cwd(), '../.env')
-})
+const env = require('dotenv').config();
 
 const authingOIDC = env.parsed;
 
@@ -21,8 +19,8 @@ const serverlessConstructorParams = {
   domain: authingOIDC.DOMAIN,
   scope: authingOIDC.SCOPE,
   response_type: authingOIDC.RESPONSE_TYPE,
-  prompt: authingOIDC.PROMPT
-}
+  prompt: authingOIDC.PROMPT,
+};
 
 app.use(express.json());
 app.get("/authing/oidc/redirect", async (req, res) => {
@@ -30,7 +28,7 @@ app.get("/authing/oidc/redirect", async (req, res) => {
   let query = req.query;
   if (query && query["code"]) {
     await serverless.default({
-      redirect_uri: redirect_uri,
+      redirect_uri,
       ...serverlessConstructorParams
     });
     try {
@@ -75,7 +73,7 @@ app.get("/login", async (req, res) => {
   let host = req.headers.host;
   redirect_uri = `http://${host}/authing/oidc/redirect`;
   const oidcUrl = await new serverlessOIDC().default({
-    redirect_uri: redirect_uri,
+    redirect_uri,
     ...serverlessConstructorParams
   });
   res.redirect(302, oidcUrl);

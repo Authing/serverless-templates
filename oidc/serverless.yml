@@ -5,3 +5,5 @@ express:
   inputs:
     region: ap-shanghai
     code: ./codes
+    include: 
+      - ./.env
