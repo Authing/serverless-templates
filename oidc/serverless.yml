@@ -1,0 +1,11 @@
+# serverless.yml
+
+express:
+  component: ./node_modules/@serverless/tencent-express
+  inputs:
+    region: ap-shanghai
+    serviceId: service-oidc
+    code: ./codes
+    functionConf:
+      timeout: 100
+      memorySize: 128

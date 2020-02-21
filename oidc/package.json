@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@serverless/tencent-express": "^2.3.0"
+  }
+}
