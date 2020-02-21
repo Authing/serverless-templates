@@ -103,7 +103,7 @@ express:
 <p>
 5. 选择 OIDC 应用  
    在创建完成后自动跳转至，控制台。  
-   在控制台中分别点击 `第三方登录`->`OIDC应用`后，可以看到已经生成的 OIDC 应用名，点击应用名即可看到该应用信息。
+   在控制台中分别点击 <strong>第三方登录</strong> -> <strong>OIDC应用</strong>后，可以看到已经生成的 OIDC 应用名，点击应用名即可看到该应用信息。
 </p>
 
    <img src="https://cdn.authing.cn/blog/20200221200735.png" height='400px' style="margin: auto;display: block;">
