@@ -66,7 +66,6 @@ $ npm i
 </p>
 
 ![](https://cdn.authing.cn/blog/20200221220348.png)
-   <img src="" height='400px' style="margin: auto;display: block;">
 
 <p>
 3. 在应用信息中可以看到 <strong>AppID</strong>、<strong>Secret</strong>和<strong>认证地址</strong>。
