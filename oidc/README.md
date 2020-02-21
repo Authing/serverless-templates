@@ -10,7 +10,7 @@
 
 此项目完全基于腾讯云 Serverless 服务器，可大大缩减使用成本。 如果正在寻找一个低开销的便捷轻量的 Serverless OIDC 服务框架，这是最好的选择。
 
-使用本项目前需要你拥有 OIDC 流程[背景知识](https://docs.authing.cn/authing/advanced/oidc/understand-oidc)。
+在 使用本项目前你 需要拥有 OIDC 认证[背景知识](https://docs.authing.cn/authing/advanced/oidc/understand-oidc)。
 
 操作步骤：
 
