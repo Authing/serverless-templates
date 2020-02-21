@@ -123,10 +123,32 @@ http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/authing/oidc/r
 
 ## 3. 测试
 
-部署成功后你可访问返回链接中的 `/login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息，如：
+部署成功后你可访问返回链接中的 `/login` 路由进行登录，如：
 
- ```
+```
 http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login
+```
+
+登录成功后你将看到返回了 access_token 和用户信息，如：
+
+```javascript
+{
+	"token": {
+		"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJfVkRFaWhYME4yUnIxX3RKQ1Z1UTciLCJzdWIiOiI1Yjg4YWFlYTM0OWUyZDAwMDFhNWI3MTgiLCJpc3MiOiJodHRwczovL29hdXRoLmF1dGhpbmcuY24vb2F1dGgvb2lkYyIsImlhdCI6MTU4MjI4NDA3MSwiZXhwIjoxNTgyMjg3NjcxLCJzY29wZSI6InVuaW9uaWQgZW1haWwgcGhvbmUgb3BlbmlkIiwiYXVkIjoiNWU0ZWJlMjVmYTkyMThmMDU5ODQ0MTc0In0.b5-gZQXxRrhnNIcz3LmQFChwytfO97un__MeGhbFOQ0",
+		"expires_in": 3600,
+		"id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlvbmlkIjoiMjQ2OTY4OCIsImVtYWlsIjoieGlleWFuZ0Bkb2RvcmEuY24iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX251bWJlciI6IiIsInBob25lX251bWJlcl92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjViODhhYWVhMzQ5ZTJkMDAwMWE1YjcxOCIsImF1dGhfdGltZSI6MTU4MjI4NDA3MSwiYXRfaGFzaCI6IkR4b3haa2pOWEhGZi04M0lGQkxsQWciLCJzaWQiOiI0ZjI1OTE3Yi1jMTIxLTQzYjctYjI5MC1lYzgzY2Q3ZjA1ZTYiLCJhdWQiOiI1ZTRlYmUyNWZhOTIxOGYwNTk4NDQxNzQiLCJleHAiOjE1ODIyODc2NzEsImlhdCI6MTU4MjI4NDA3MSwiaXNzIjoiaHR0cHM6Ly9vYXV0aC5hdXRoaW5nLmNuL29hdXRoL29pZGMifQ.W5xip0pzxLiUhTlGlvvhm4NkClLotgKBEgXMSRA8qKk",
+		"scope": "unionid email phone openid",
+		"token_type": "Bearer"
+	},
+	"userInfo": {
+		"unionid": "xxxxxxxx",
+		"email": "xxxx@xxxxx.cn",
+		"email_verified": false,
+		"phone_number": "",
+		"phone_number_verified": false,
+		"sub": "5b88aaea349e2d0001a5b718"
+	}
+}
 ```
 
 [点击查看本项目演示](http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login)。
