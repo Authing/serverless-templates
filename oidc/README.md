@@ -12,6 +12,8 @@
 
 在 使用本项目前你 需要拥有 OIDC 认证[背景知识](https://docs.authing.cn/authing/advanced/oidc/understand-oidc)。
 
+[本项目演示 Demo](http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login)。
+
 操作步骤：
 
 1. [安装](#1-安装)
@@ -120,7 +122,9 @@ http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/authing/oidc/r
 
 ## 3. 测试
 
-部署成功后你可访问返回链接中的 `login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息。
+部署成功后你可访问返回链接中的 `/login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息。
+
+[点击查看本项目演示](http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/login)。
 
 ### 路由说明
 
