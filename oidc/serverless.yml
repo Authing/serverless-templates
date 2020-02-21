@@ -5,5 +5,3 @@ express:
   inputs:
     region: ap-shanghai
     code: ./codes
-    include:
-        - ./serverless.yml
