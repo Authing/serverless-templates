@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@authing/serverless-oidc": "^0.1.2",
+    "@serverless/tencent-express": "^2.3.0",
+    "express": "^4.17.1"
+  }
+}
