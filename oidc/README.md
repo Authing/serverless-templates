@@ -4,7 +4,7 @@
 
 [Authing](https://authing.cn) 提供适用于 Web、iOS 和 Android 的跨平台无服务器认证和授权平台，兼容 OAuth2.0、OIDC、AD/LDAP、SAML 等各类协议，平台现有数千名开发者用户，分布在美国、欧洲、加拿大、澳大利亚、日本、中国香港、中国台湾等国家和地区，每月处理数十万次身份认证。
 
-**(OIDC 协议)[(https://docs.authing.cn/authing/advanced/oidc/understand-oidc)]是 Authing 推荐的最佳身份认证实践。**
+**[OIDC 协议](https://docs.authing.cn/authing/advanced/oidc/understand-oidc)是 Authing 推荐的最佳身份认证实践。**
 
 本项目用于使用 [Authing OIDC 流程](https://docs.authing.cn/authing/advanced/oidc/oidc-authorization)进行身份认证时后端接口的快速部署，这些接口包含了「使用 Code 换取  access_token」、「使用 access_token 换取 userInfo」以及进入登录页面 URL 拼接功能。
 
@@ -131,6 +131,28 @@ $ sls
 `/authing/oidc/redirect` 路由是登录成功后的业务回调地址，该地址会返回用户的 `access_token` 和 `userinfo`信息。
 
 你可以在这个路由中处理你具体的业务信息，比如设置 cookie。
+
+`access_token` 和 `userinfo` 示例：
+
+```
+{
+	"token": {
+		"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJfVkRFaWhYME4yUnIxX3RKQ1Z1UTciLCJzdWIiOiI1Yjg4YWFlYTM0OWUyZDAwMDFhNWI3MTgiLCJpc3MiOiJodHRwczovL29hdXRoLmF1dGhpbmcuY24vb2F1dGgvb2lkYyIsImlhdCI6MTU4MjI4NDA3MSwiZXhwIjoxNTgyMjg3NjcxLCJzY29wZSI6InVuaW9uaWQgZW1haWwgcGhvbmUgb3BlbmlkIiwiYXVkIjoiNWU0ZWJlMjVmYTkyMThmMDU5ODQ0MTc0In0.b5-gZQXxRrhnNIcz3LmQFChwytfO97un__MeGhbFOQ0",
+		"expires_in": 3600,
+		"id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlvbmlkIjoiMjQ2OTY4OCIsImVtYWlsIjoieGlleWFuZ0Bkb2RvcmEuY24iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX251bWJlciI6IiIsInBob25lX251bWJlcl92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjViODhhYWVhMzQ5ZTJkMDAwMWE1YjcxOCIsImF1dGhfdGltZSI6MTU4MjI4NDA3MSwiYXRfaGFzaCI6IkR4b3haa2pOWEhGZi04M0lGQkxsQWciLCJzaWQiOiI0ZjI1OTE3Yi1jMTIxLTQzYjctYjI5MC1lYzgzY2Q3ZjA1ZTYiLCJhdWQiOiI1ZTRlYmUyNWZhOTIxOGYwNTk4NDQxNzQiLCJleHAiOjE1ODIyODc2NzEsImlhdCI6MTU4MjI4NDA3MSwiaXNzIjoiaHR0cHM6Ly9vYXV0aC5hdXRoaW5nLmNuL29hdXRoL29pZGMifQ.W5xip0pzxLiUhTlGlvvhm4NkClLotgKBEgXMSRA8qKk",
+		"scope": "unionid email phone openid",
+		"token_type": "Bearer"
+	},
+	"userInfo": {
+		"unionid": "2469688",
+		"email": "xieyang@dodora.cn",
+		"email_verified": false,
+		"phone_number": "",
+		"phone_number_verified": false,
+		"sub": "5b88aaea349e2d0001a5b718"
+	}
+}
+```
 
 #### /userinfo 路由
 
