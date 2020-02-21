@@ -57,22 +57,20 @@ $ npm i
 
 ### 修改配置
 
-修改项目目录下的 `serverless.yml`文件：
+新建 `.env` 文件：
 
-```yaml
-# serverless.yml
+```shell
+$ touch .env
+```
 
-express:
-  component: ./node_modules/@serverless/tencent-express
-  inputs:
-    region: ap-shanghai
-    serviceId: service-oidc
-    code: ./codes
-    authing:
-      oidc:
-        clientId: YOUR_OIDC_CLIENTID
-        clientSecret: YOUR_OIDC_CLIENR_SECRET
-        domain: YOUR_OIDC_DOMAIN.authing.cn
+然后填充以下配置：
+
+```shell
+# .env
+
+CLIENT_ID=YOUR_OIDC_CLIENTID
+CLIENT_SECRET=YOUR_OIDC_CLIENR_SECRET
+DOMAIN=YOUR_OIDC_DOMAIN.authing.cn
 ```
 
 <details>
