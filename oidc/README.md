@@ -68,9 +68,6 @@ express:
     region: ap-shanghai
     serviceId: service-oidc
     code: ./codes
-    functionConf:
-      timeout: 100
-      memorySize: 128
     authing:
       oidc:
         clientId: YOUR_OIDC_CLIENTID
@@ -138,8 +135,8 @@ $ sls
 		"token_type": "Bearer"
 	},
 	"userInfo": {
-		"unionid": "2469688",
-		"email": "xieyang@dodora.cn",
+		"unionid": "xxxxxxxx",
+		"email": "xxxx@xxxxx.cn",
 		"email_verified": false,
 		"phone_number": "",
 		"phone_number_verified": false,

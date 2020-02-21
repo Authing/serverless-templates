@@ -6,9 +6,6 @@ express:
     region: ap-shanghai
     serviceId: service-oidc
     code: ./codes
-    functionConf:
-      timeout: 100
-      memorySize: 128
     authing:
       oidc:
         clientId: 5e4ebe25fa9218f059844174
