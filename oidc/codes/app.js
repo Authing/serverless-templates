@@ -61,25 +61,6 @@ app.get("/authing/oidc/redirect", async (req, res) => {
   return;
 });
 
-app.post("/userinfo", async (req, res) => {
-  if (!(req.body && req.body.token)) {
-    res.send(403, "Unauthorized");
-    return;
-  }
-  let token = req.body.token;
-  let user_info = "";
-  try {
-    user_info = await serverless.getUserInfoByAccessToken(
-      token.split("%20")[1]
-    );
-  } catch (err) {
-    console.log(err);
-    user_info = "查询失败 请退出重试";
-  }
-
-  res.send(200, user_info);
-});
-
 app.get("/login", async (req, res) => {
   let host = req.headers.host;
   redirect_uri = `http://${host}/authing/oidc/redirect`;

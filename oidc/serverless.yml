@@ -16,5 +16,5 @@ express:
         responseType: code
         domain: serverless-oidc.authing.cn
         scope: "unionid email phone offline_access openid"
-        prompt: "login"
+        prompt: login
         grantType: authorization_code
