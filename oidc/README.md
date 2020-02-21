@@ -57,9 +57,7 @@ $ npm i
 
 ## 2. 部署
 
-### 修改配置
-
-#### 获取 Authing 必须信息
+### 获取 Authing 必须信息
 <p>
 1. 首先注册一个 <a href="https://sign.authing.cn/login" target="_blank">Authing 账号</a>。
 
@@ -73,6 +71,8 @@ $ npm i
 3. 在应用信息中可以看到 <strong>AppID</strong>、<strong>Secret</strong>和<strong>认证地址</strong>。
 </p>
       <img src="https://cdn.authing.cn/blog/20200221200745.png" height='400px' style="margin: auto;display: block;">
+
+### 修改配置
 
 进入 `codes` 目录，新建 `.env` 文件：
 
