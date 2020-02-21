@@ -20,9 +20,9 @@ OIDC 认证流程图如下：
 
 1. [安装](#1-安装)
 2. [部署](#2-部署)
+3. [测试](#3-测试)
 
-
-### 1. 安装
+## 1. 安装
 
 首先，通过如下命令安装 [Serverless Framework](https://www.github.com/serverless/serverless):
 
@@ -36,11 +36,18 @@ $ npm i -g serverless
 $ serverless create --template-url https://github.com/Authing/serverless-templates/tree/master/oidc
 ```
 
-使用`cd`命令，进入`serverless-templates\oidc` 文件夹，可以查看到如下目录结构：
+使用`cd`命令，进入`serverless-templates/oidc` 文件夹，可以查看到如下目录结构：
 
 ```
 |- codes
 |- serverless.yml      # 使用项目中的 yml 文件
+```
+
+`codes` 文件夹的结构如下所示：
+
+```
+|- app.js      # OIDC 后端主文件，基于 express 
+|- packae.json
 ```
 
 在`codes` 文件目录执行 NPM 依赖的安装，如下命令所示：
@@ -50,7 +57,34 @@ $ cd codes
 $ npm i
 ```
 
-### 2. 部署
+## 2. 部署
+
+### 修改配置
+
+修改项目目录下的 `serverless.yml`文件：
+
+```yaml
+# serverless.yml
+
+express:
+  component: ./node_modules/@serverless/tencent-express
+  inputs:
+    region: ap-shanghai
+    serviceId: service-oidc
+    code: ./codes
+    functionConf:
+      timeout: 100
+      memorySize: 128
+    authing:
+      oidc:
+        clientId: YOUR_OIDC_CLIENTID
+        clientSecret: YOUR_OIDC_CLIENR_SECRET
+        responseType: code
+        domain: YOUR_OIDC_DOMAIN.authing.cn
+        scope: "unionid email phone offline_access openid"
+        prompt: login
+        grantType: authorization_code
+```
 
 回到`oidc`目录下，直接通过 `sls` 命令来部署应用:
 
@@ -77,6 +111,30 @@ $ sls
 
   15s » dashboard » done
 ```
+
+## 3. 测试
+
+部署成功后的后端会拥有三个路由：
+
+1. [/login](/login-路由)
+2. [/authing/oidc/redirect](/authing/oidc/redirect-路由)
+3. [/userinfo](/userinfo-路由)
+
+#### /login 路由
+
+`/login` 路由用来执行登录，该路由会将用户重定向到在 `serverless.yml` 文件中配置的 `domain`。
+
+![](https://cdn.authing.cn/blog/20200221191659.png)
+
+#### /authing/oidc/redirect 路由
+
+`/authing/oidc/redirect` 路由是登录成功后的业务回调地址，该地址会返回用户的 `access_token` 和 `userinfo`信息。
+
+你可以在这个路由中处理你具体的业务信息，比如设置 cookie。
+
+#### /userinfo 路由
+
+`/userinfo` 路由是用 `access_token` 换取 `userinfo` 的路由，若你需要重新获取 userinfo 请以 `userinfo?access_token=从 /authing/oidc/redirect 中获取的 access_token` 形式发送 access_token 重新获取。
 
 &nbsp;
 
