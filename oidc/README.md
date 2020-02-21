@@ -126,7 +126,7 @@ $ sls
 
 `/authing/oidc/redirect` 路由是登录成功后的业务回调地址，该地址会返回用户的 `access_token` 和 `userinfo`信息。
 
-你可以在这个路由中处理你具体的业务信息，比如设置 cookie。
+你可以在这个路由中处理你具体的业务信息，比如设置 cookie、发送数据到你的其他项目中。
 
 `access_token` 和 `userinfo` 示例：
 
