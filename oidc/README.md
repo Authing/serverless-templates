@@ -78,7 +78,7 @@ express:
 <details>
 <summary style="font-size:1.25em"><strong>获取 Authing 必须信息</strong></summary>
 <p>
-1. 首先访问[Authing SSO](https://sign.authing.cn/login)进行注册，在注册成功后会自动跳转至 Guide 页面指引你创建一个用户池。
+1. 首先注册一个 <a href="https://sign.authing.cn/login" target="_blank">Authing 账号</a>，在注册成功后会自动跳转至 Guide 页面指引你创建一个用户池。
 </p>
    <img src="https://cdn.authing.cn/blog/20200221200613.png" height='400px' style="margin: auto;display: block;">
 
@@ -86,7 +86,7 @@ express:
 2. 在这里填写想要的用户池名。
 </p>
 
-   <img src="https://cdn.authing.cn/blog/20200221200641.png" height='400px' style="margin: auto;display: block;">
+   <img src="https://cdn.authing.cn/blog/20200221201107.png" height='400px' style="margin: auto;display: block;">
 
 <p>
 3. 选择二级域名 你可以选择一个你喜欢的二级域名作为你的业务域名。
