@@ -6,4 +6,4 @@ express:
     region: ap-shanghai
     code: ./codes
     include: 
-      - ./.env
+      - ./codes/.env
