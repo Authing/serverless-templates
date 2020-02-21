@@ -112,9 +112,9 @@ $ sls
 
 部署成功后的后端会拥有三个路由：
 
-1. [/login](/login-路由)
-2. [/authing/oidc/redirect](/authing/oidc/redirect-路由)
-3. [/userinfo](/userinfo-路由)
+1. [/login](#/login-路由)
+2. [/authing/oidc/redirect](#/authing/oidc/redirect-路由)
+3. [/userinfo](#/userinfo-路由)
 
 #### /login 路由
 
