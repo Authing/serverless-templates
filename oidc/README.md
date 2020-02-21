@@ -57,6 +57,23 @@ $ npm i
 
 ### 修改配置
 
+<details>
+<summary style="font-size:1.25em"><strong>获取 Authing 必须信息</strong></summary>
+<p>
+1. 首先注册一个 <a href="https://sign.authing.cn/login" target="_blank">Authing 账号</a>。
+
+<p>
+2. 注册完成后在控制台中依次点击 <strong>第三方登录</strong> -> <strong>OIDC 应用</strong>后，可以看到OIDC 应用列表，点击应用名即可看到该应用信息。
+</p>
+
+   <img src="https://cdn.authing.cn/blog/20200221200735.png" height='400px' style="margin: auto;display: block;">
+
+<p>
+3. 在应用信息中可以看到 <strong>AppID</strong>、<strong>Secret</strong>和<strong>认证地址</strong>。
+</p>
+      <img src="https://cdn.authing.cn/blog/20200221200745.png" height='400px' style="margin: auto;display: block;">
+   </details>
+
 进入 `codes` 目录，新建 `.env` 文件：
 
 ```shell
@@ -68,51 +85,14 @@ $ touch .env
 ```shell
 # .env
 
-CLIENT_ID=YOUR_OIDC_CLIENTID
-CLIENT_SECRET=YOUR_OIDC_CLIENR_SECRET
-DOMAIN=YOUR_OIDC_DOMAIN.authing.cn
+CLIENT_ID=YOUR_OIDC_CLIENTID # Authing OIDC 应用中的 AppID
+CLIENT_SECRET=YOUR_OIDC_CLIENR_SECRET # Authing OIDC 应用中的 Secret
+DOMAIN=YOUR_OIDC_DOMAIN.authing.cn # Authing OIDC 应用中的认证地址
 ```
 
-<details>
-<summary style="font-size:1.25em"><strong>获取 Authing 必须信息</strong></summary>
-<p>
-1. 首先注册一个 <a href="https://sign.authing.cn/login" target="_blank">Authing 账号</a>，在注册成功后会自动跳转至 Guide 页面指引你创建一个用户池。
-</p>
-   <img src="https://cdn.authing.cn/blog/20200221200613.png" height='400px' style="margin: auto;display: block;">
+### 执行部署
 
-<p>
-2. 在这里填写想要的用户池名。
-</p>
-
-   <img src="https://cdn.authing.cn/blog/20200221201107.png" height='400px' style="margin: auto;display: block;">
-
-<p>
-3. 选择二级域名 你可以选择一个你喜欢的二级域名作为你的业务域名。
-</p>
-
-   <img src="https://cdn.authing.cn/blog/20200221200821.png" height='400px' style="margin: auto;display: block;">
-
-<p>
-4. 填写回调地址 在这里可以选择你喜欢的业务回调地址。
-</p>
-
-   <img src="https://cdn.authing.cn/blog/20200221200802.png" height='400px' style="margin: auto;display: block;">
-
-<p>
-5. 选择 OIDC 应用  
-   在创建完成后自动跳转至，控制台。  
-   在控制台中分别点击 <strong>第三方登录</strong> -> <strong>OIDC应用</strong>后，可以看到已经生成的 OIDC 应用名，点击应用名即可看到该应用信息。
-</p>
-
-   <img src="https://cdn.authing.cn/blog/20200221200735.png" height='400px' style="margin: auto;display: block;">
-
-<p>
-6. 在应用信息中可以看到 `AppID` 和 `Secret` 信息
-</p>
-      <img src="https://cdn.authing.cn/blog/20200221200745.png" height='400px' style="margin: auto;display: block;">
-   </details>
-
-回到`oidc`目录下，直接通过 `sls` 命令来部署应用:
+修改完配置后回到`oidc`目录下，直接通过 `sls` 命令来部署应用:
 
 ```console
 $ sls
@@ -122,23 +102,27 @@ $ sls
 
 如您的账号未[登陆](https://cloud.tencent.com/login)或[注册](https://cloud.tencent.com/register)腾讯云，您可以直接通过微信扫描命令行中的二维码进行授权登陆和注册。
 
-部署成功后，可以直接在浏览器中访问日志中返回的 dashboard url 地址，查看该全栈 Web app 的效果:
-
 ```
-  dashboard:
-    url: https://jcwm1l-myappid.cos-website.ap-guangzhou.myqcloud.com
-    env:
-      apiUrl: https://service-id-myappid.gz.apigw.tencentcs.com/release/
-  api:
-    region:              undefined
-    functionName:        tencent-fullstack-api
-    apiGatewayServiceId: service-id
-    url:                 https://service-id-myappid.gz.apigw.tencentcs.com/release/
+  express: 
+    region:              ap-shanghai
+    functionName:        ExpressComponent_2x6bsx
+    apiGatewayServiceId: service-pzh0ikw7
+    url:                 http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/
 
   15s » dashboard » done
 ```
 
+部署完成后将返回的地址拼接「/authing/oidc/redirect」填写到 Authing OIDC 应用中的「回调 URL 中」，如：
+
+```
+http://service-pzh0ikw7-1255785256.sh.apigw.tencentcs.com/release/authing/oidc/redirect
+```
+
 ## 3. 测试
+
+部署成功后你可访问返回链接中的 `login` 路由进行登录，登录成功后你将看到返回了 access_token 和用户信息。
+
+### 路由说明
 
 部署成功后的后端会拥有三个路由：
 
