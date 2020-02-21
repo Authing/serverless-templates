@@ -2,48 +2,62 @@
 const express = require("express");
 const app = express();
 const serverlessOIDC = require("./node_modules/@authing/serverless-oidc");
-const tencentExpress = require('./node_modules/@serverless/tencent-express');
-const client_id = "5e3eb1f9df538284ec6a3911";
-const secert = "38f70e8ed63070f5ce21dc4feb806562";
+const yaml = require('js-yaml');
+const fs   = require('fs');
 
-console.log(tencentExpress);//////
+let inputs = null;
+try {
+  inputs = yaml.safeLoad(fs.readFileSync('../serverless.yml', 'utf8'));
+  inputs = inputs.express.inputs;
+} catch (e) {
+  console.log(e);
+}
 
-const path = require("path");
+const authingOIDC = inputs.authing.oidc;
 const serverless = new serverlessOIDC();
+
+const serverlessConstructorParams = {
+  client_id: authingOIDC.clientId,
+  domain: authingOIDC.domain,
+  scope: authingOIDC.scope,
+  response_type: authingOIDC.responseType,
+  prompt: authingOIDC.prompt
+}
+
 app.use(express.json());
-app.get("/", async (req, res) => {
-  redirect_uri = `http://${req.headers.host}/`;
+app.get("/authing/oidc/redirect", async (req, res) => {
+  redirect_uri = `http://${req.headers.host}/authing/oidc/redirect`;
   let query = req.query;
   if (query && query["code"]) {
     await serverless.default({
-      client_id: client_id,
       redirect_uri: redirect_uri,
-      domain: "tmptest.authing.cn",
-      scope: "unionid email phone offline_access openid",
-      response_type: "code",
-      state: "xx1x",
-      nonce: "xxxx",
-      prompt: "login"
+      ...serverlessConstructorParams
     });
     try {
       let token = await serverless.getTokenByCode({
         code: query["code"],
-        client_secret: secert,
-        grant_type: "authorization_code",
+        client_secret: authingOIDC.clientSecret,
+        grant_type: authingOIDC.grantType,
         redirect_uri: redirect_uri
       });
 
-      res
-        .cookie("access_token", "Bearer " + token.access_token, {
-          expires: new Date(Date.now() + 60 * 3600000) // cookie will be removed after 8 hours
-        })
-        .redirect(302, "/");
+      let userInfo;
+      try {
+        userInfo = await serverless.getUserInfoByAccessToken(token.access_token);
+      } catch (err) {
+        console.log(err);
+      }
+    
+      res.send(400, {
+        token,
+        userInfo
+      });
+
     } catch (err) {
       console.log(err);
-      res.send(400, "换取Token失败");
+      res.send(400, err);
     }
   }
-  res.sendFile(path.join(__dirname + "/index.html"));
   return;
 });
 
@@ -68,16 +82,10 @@ app.post("/userinfo", async (req, res) => {
 
 app.get("/login", async (req, res) => {
   let host = req.headers.host;
-  redirect_uri = `http://${host}/`;
+  redirect_uri = `http://${host}/authing/oidc/redirect`;
   const oidcUrl = await new serverlessOIDC().default({
-    client_id: client_id,
     redirect_uri: redirect_uri,
-    domain: "tmptest.authing.cn",
-    scope: "unionid email phone offline_access openid",
-    response_type: "code",
-    state: "xx1x",
-    nonce: "xxxx",
-    prompt: "login"
+    ...serverlessConstructorParams
   });
   res.redirect(302, oidcUrl);
 });

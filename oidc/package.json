@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@serverless/tencent-express": "^2.3.0"
+    "@serverless/tencent-express": "^2.3.0",
+    "js-yaml": "^3.13.1"
   }
 }
