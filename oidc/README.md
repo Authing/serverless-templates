@@ -1,4 +1,4 @@
-# 在腾讯云部署 AUthing OIDC 流程后端
+# 在腾讯云部署 Authing OIDC 认证流程后端
 
 ![](https://cdn.authing.cn/blog/20200221190154.png)
 
